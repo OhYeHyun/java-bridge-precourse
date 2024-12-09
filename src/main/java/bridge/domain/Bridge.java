@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
@@ -21,5 +22,13 @@ public class Bridge {
 
     public void addSecondBridge(Board board) {
         secondBridge.add(board);
+    }
+
+    public List<Board> first() {
+        return Collections.unmodifiableList(firstBridge);
+    }
+
+    public List<Board> second() {
+        return Collections.unmodifiableList(secondBridge);
     }
 }

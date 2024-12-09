@@ -2,8 +2,6 @@ package bridge.service;
 
 import bridge.domain.Bridge;
 
-import java.util.Objects;
-
 public class CrossService {
     private final Bridge bridge;
     private int firstIndex;
@@ -19,17 +17,15 @@ public class CrossService {
         secondIndex = 0;
     }
 
-    public boolean checkBoard(String selectedBridge) {
-        boolean passable = false;
-        if (Objects.equals(selectedBridge, "U")) {
-            passable = bridge.first().get(firstIndex).getPassable();
-            updateFirstIndex(passable);
-        }
-        if (Objects.equals(selectedBridge, "D")) {
-            passable = bridge.second().get(secondIndex).getPassable();
-            updateSecondIndex(passable);
-        }
+    public boolean checkFirstBridge() {
+        boolean passable = bridge.first().get(firstIndex).getPassable();
+        updateFirstIndex(passable);
+        return passable;
+    }
 
+    public boolean checkSecondBridge() {
+        boolean passable = bridge.second().get(secondIndex).getPassable();
+        updateSecondIndex(passable);
         return passable;
     }
 

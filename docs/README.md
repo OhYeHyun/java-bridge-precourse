@@ -9,6 +9,12 @@
 - Bridge
 - [ ] : 두 개의 List<Board>를 갖는 객체
 
+- BridgeGame
+- [ ] : 게임 전체 로직
+
+- GameSettings
+- [ ] : 다리 생성
+
 - CrossService
 - [ ] : 선택한 발판으로 건널 수 있는지 없는지
 

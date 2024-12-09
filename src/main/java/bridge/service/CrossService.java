@@ -45,7 +45,7 @@ public class CrossService {
         return position == bridge.getSize() - 1;
     }
 
-    public List<Object> getTurnResult() {
+    public List<List<Board>> getTurnResult() {
         List<Board> firstBridge = bridge.first().subList(0, position);
         List<Board> secondBridge = bridge.first().subList(0, position);
 

@@ -1,5 +1,7 @@
 package bridge.service;
 
+import bridge.domain.Board;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -38,11 +40,15 @@ public class BridgeGame {
         tryService.initialize();
     }
 
-    public List<Object> displayTurnResult() {
+    public List<List<Board>> displayTurnResult() {
         return crossService.getTurnResult();
     }
 
-    public List<Object> displayTotalResult() {
-        return List.of(success, tryService.getTryCount());
+    public boolean displaySuccessful() {
+        return success;
+    }
+
+    public int displayTryCount() {
+        return tryService.getTryCount();
     }
 }

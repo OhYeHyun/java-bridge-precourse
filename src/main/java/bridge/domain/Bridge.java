@@ -31,4 +31,17 @@ public class Bridge {
     public List<Board> second() {
         return Collections.unmodifiableList(secondBridge);
     }
+
+    public void initialize() {
+        for (Board board : firstBridge) {
+            board.initialize();
+        }
+        for (Board board : secondBridge) {
+            board.initialize();
+        }
+    }
+
+    public int getSize() {
+        return firstBridge.size();
+    }
 }

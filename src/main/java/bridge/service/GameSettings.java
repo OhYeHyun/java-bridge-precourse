@@ -20,17 +20,15 @@ public class GameSettings {
     }
 
     private void makeBridge(String boardNumber) {
-        Board passableBoard = new Board(true);
-        Board impassableBoard = new Board(false);
 
         for (char number : boardNumber.toCharArray()) {
             if (Objects.equals(number, '1')) {
-                bridge.addFirstBridge(passableBoard);
-                bridge.addSecondBridge(impassableBoard);
+                bridge.addFirstBridge(new Board(true));
+                bridge.addSecondBridge(new Board(false));
             }
             if (Objects.equals(number, '0')) {
-                bridge.addFirstBridge(impassableBoard);
-                bridge.addSecondBridge(passableBoard);
+                bridge.addFirstBridge(new Board(false));
+                bridge.addSecondBridge(new Board(true));
             }
         }
     }

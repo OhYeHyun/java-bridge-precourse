@@ -1,11 +1,13 @@
 package bridge.service;
 
+import bridge.domain.Board;
 import bridge.domain.Bridge;
+
+import java.util.List;
 
 public class CrossService {
     private final Bridge bridge;
-    private int firstIndex;
-    private int secondIndex;
+    private int position;
 
     public CrossService(Bridge bridge) {
         this.bridge = bridge;
@@ -13,31 +15,44 @@ public class CrossService {
     }
 
     public void initialize() {
-        firstIndex = 0;
-        secondIndex = 0;
+        bridge.initialize();
+        position = 0;
     }
 
     public boolean checkFirstBridge() {
-        boolean passable = bridge.first().get(firstIndex).getPassable();
-        updateFirstIndex(passable);
-        return passable;
+        Board board = bridge.first().get(position);
+
+        board.selected();
+        updatePosition(board.getPassable());
+        return board.getPassable();
     }
 
     public boolean checkSecondBridge() {
-        boolean passable = bridge.second().get(secondIndex).getPassable();
-        updateSecondIndex(passable);
-        return passable;
+        Board board = bridge.second().get(position);
+
+        board.selected();
+        updatePosition(board.getPassable());
+        return board.getPassable();
     }
 
-    private void updateFirstIndex(boolean passable) {
+    private void updatePosition(boolean passable) {
         if (passable) {
-            firstIndex++;
+            position++;
         }
     }
 
-    private void updateSecondIndex(boolean passable) {
-        if (passable) {
-            secondIndex++;
-        }
+    public boolean successful() {
+        return position == bridge.getSize() - 1;
+    }
+
+    public List<Object> getTurnResult() {
+        List<Board> firstBridge = bridge.first().subList(0, position);
+        List<Board> secondBridge = bridge.first().subList(0, position);
+
+        return List.of(firstBridge, secondBridge);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

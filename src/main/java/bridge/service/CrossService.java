@@ -11,8 +11,12 @@ public class CrossService {
 
     public CrossService(Bridge bridge) {
         this.bridge = bridge;
-        this.firstIndex = 0;
-        this.secondIndex = 0;
+        initialize();
+    }
+
+    public void initialize() {
+        firstIndex = 0;
+        secondIndex = 0;
     }
 
     public boolean checkBoard(String selectedBridge) {

@@ -23,7 +23,7 @@ public class CrossService {
         Board board = bridge.first().get(position);
 
         board.selected();
-        updatePosition(board.getPassable());
+        position++;
         return board.getPassable();
     }
 
@@ -31,28 +31,22 @@ public class CrossService {
         Board board = bridge.second().get(position);
 
         board.selected();
-        updatePosition(board.getPassable());
+        position++;
         return board.getPassable();
     }
 
-    private void updatePosition(boolean passable) {
-        if (passable) {
-            position++;
-        }
-    }
-
     public boolean successful() {
-        return position == bridge.getSize() - 1;
+        return position == bridge.getSize();
     }
 
     public List<List<Board>> getTurnResult() {
         List<Board> firstBridge = bridge.first().subList(0, position);
-        List<Board> secondBridge = bridge.first().subList(0, position);
+        List<Board> secondBridge = bridge.second().subList(0, position);
 
         return List.of(firstBridge, secondBridge);
     }
 
-    public int getPosition() {
-        return position;
+    public boolean remainingBoard() {
+        return position < bridge.getSize();
     }
 }

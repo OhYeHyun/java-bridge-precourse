@@ -9,46 +9,53 @@ public class BridgeGame {
     private final CrossService crossService;
     private final TryService tryService;
 
-    private boolean success = false;
+    private boolean passable = true;
 
     public BridgeGame(CrossService crossService, TryService tryService) {
         this.crossService = crossService;
         this.tryService = tryService;
     }
 
-    public boolean move(String selectedBridge) {
-        boolean passable = false;
-        if (Objects.equals(selectedBridge, "U")) {
+    public boolean gameSuccess() {
+        return passable && crossService.successful();
+    }
+
+    public void moveBridge(String selectedMove) {
+        if (Objects.equals(selectedMove, "U")) {
             passable = crossService.checkFirstBridge();
         }
-        if (Objects.equals(selectedBridge, "D")) {
+        if (Objects.equals(selectedMove, "D")) {
             passable = crossService.checkSecondBridge();
         }
+    }
 
+    public boolean continueGame(String selectedContinue) {
+        return Objects.equals(selectedContinue, "R");
+    }
+
+    public void restart() {
+        passable = true;
+        crossService.initialize();
+        tryService.addCount();
+    }
+
+    public boolean getPassable() {
         return passable;
     }
 
-    public boolean isFinish() {
-        if (crossService.successful()) {
-            success = true;
-        }
-        return success;
+    public boolean remainingBoard() {
+        return crossService.remainingBoard();
     }
 
-    private void restart() {
-        crossService.initialize();
-        tryService.initialize();
-    }
-
-    public List<List<Board>> displayTurnResult() {
+    public List<List<Board>> getTurnResult() {
         return crossService.getTurnResult();
     }
 
-    public boolean displaySuccessful() {
-        return success;
+    public boolean getSuccessful() {
+        return crossService.successful();
     }
 
-    public int displayTryCount() {
+    public int getTryCount() {
         return tryService.getTryCount();
     }
 }

@@ -22,7 +22,7 @@ public class OutputView {
         printWithLineSpace("다리의 길이를 입력해주세요.");
     }
 
-    public static void getBridge() {
+    public static void getMove() {
         printWithLineSpace("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
@@ -51,7 +51,7 @@ public class OutputView {
     }
 
     public void displayFinalResult(List<List<Board>> bridges, boolean successful, int tryCount) {
-        print("최종 게임 결과");
+        printWithLineSpace("최종 게임 결과");
         displayTurnResult(bridges);
         successfulResult(successful);
         print(String.format("총 시도한 횟수: %d", tryCount));

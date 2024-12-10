@@ -8,7 +8,7 @@ public class TryService {
     }
 
     public void initialize() {
-        tryCount = 0;
+        tryCount = 1;
     }
 
     public void addCount() {

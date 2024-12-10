@@ -1,10 +1,11 @@
 package bridge.view;
 
-import camp.nextstep.edu.missionutils.Console;
+import java.util.Scanner;
 
 public class InputView {
+    private final Scanner scanner = new Scanner(System.in);
 
     public String getInput() {
-        return Console.readLine();
+        return scanner.next();
     }
 }
